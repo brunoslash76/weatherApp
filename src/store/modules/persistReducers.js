@@ -6,7 +6,7 @@ export default reducers => {
     {
       key: 'weatherApp',
       storage: AsyncStorage,
-      whitelist: ['city'],
+      whitelist: ['city', 'hourlyForecast'],
     },
     reducers
   );

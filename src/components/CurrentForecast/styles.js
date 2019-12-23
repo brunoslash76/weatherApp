@@ -22,9 +22,9 @@ export const InfoContainer = styled.View`
 `;
 
 export const Heading = styled.Text`
-  font-size: 50px;
+  font-size: 70px;
   font-weight: 200;
-  margin-top: 20px;
+  margin-top: 10px;
   color: #444;
 `;
 

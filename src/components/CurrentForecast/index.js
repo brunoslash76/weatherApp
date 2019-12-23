@@ -21,14 +21,14 @@ export default function CurrentForecast({ currentWeather }) {
   const city = useSelector(state => state.city.city)
 
   useEffect(() => {
-    console.tron.log('Use effect current forecast', city)
+
   }, [city])
 
   return (
     <Container>
       <InnerContainer>
         <Text>{city && city.name}</Text>
-        <Small>{city.weather[0].main}</Small>
+        <Small>{city.weather[0].description}</Small>
         <Heading>{city && kelvinToCelcius(city.main.temp)}°</Heading>
       </InnerContainer>
       <InfoContainer>
