@@ -1,14 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
+
+import {icons} from '../../common/util';
 
 import { Container, Image } from './styles';
 
-export default function IconForecast({code, size}) {
+// import * as Images from '../../assets/png';
+
+export default function IconForecast({icon, size}) {
+
+  useEffect(() => {
+    console.tron.log(icons[icon])
+  }, [])
+
   return (
     <Container>
       <Image
-        source={require(`../../assets/png/${code}.png`)}
+        source={icons[icon]}
         style={{width: size, height: size}}
       />
     </Container>
   );
+}
+
+IconForecast.propTypes = {
+  icon: PropTypes.string,
+  size: PropTypes.number,
+};
+IconForecast.defaultValue = {
+  icon: '01d',
+  size: 25,
 }
