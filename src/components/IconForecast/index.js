@@ -10,7 +10,7 @@ import { Container, Image } from './styles';
 export default function IconForecast({icon, size}) {
 
   useEffect(() => {
-    console.tron.log(icons[icon])
+
   }, [])
 
   return (

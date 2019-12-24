@@ -12,11 +12,10 @@ export default function HourlyForecast() {
   return (
     <Container>
       <ForecastList
-      horizontal={true}
+        horizontal={true}
         data={hourlyForecastList}
         keyExtractor={item => String(item.dt)}
         renderItem={({item}) => {
-          // console.tron.log(item.weather[0].icon);
           return (
             <ForecastItem
               temperature={item.main.temp}

@@ -2,8 +2,6 @@ import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {format} from 'date-fns';
 
-import Icon from 'react-native-vector-icons';
-
 import {kelvinToCelcius} from '../../common/util';
 
 import {
