@@ -7,9 +7,11 @@ import NextDaysItem from '../NextDaysItem';
 import {Container, NextDaysList} from './styles';
 
 export default function NextDaysForecast() {
+
   const hourlyForecastList = useSelector(
     state => state.hourlyForecast.hourlyForecast
   );
+
   const [daysArray, setDaysArray] = useState([]);
 
   const filterTemperature = (starterTemperature, minOrMax) => {
@@ -36,28 +38,45 @@ export default function NextDaysForecast() {
       }
     }
 
-    console.tron.log('ARRAY AUX =====>>>>>>', arrayAux)
+    return arrayAux;
 
   };
 
-  useEffect(() => {
-    const filterDayFromHourlyForecastList = () => {
-      let arrayAux = [];
+  const filterDayFromHourlyForecastList = () => {
 
-      for (let i = 0, length = hourlyForecastList.length - 1; i < length; i++) {
-        let dateNow = new Date(hourlyForecastList[i].dt * 1000);
-        let dateThen = new Date(hourlyForecastList[i + 1].dt * 1000);
+    let arrayAux = [];
+    for (let i = 0, length = hourlyForecastList.length - 1; i < length; i++) {
+      let dateNow = new Date(hourlyForecastList[i].dt * 1000);
+      let dateThen = new Date(hourlyForecastList[i + 1].dt * 1000);
 
-        if (!isSameDay(dateNow, dateThen)) {
-          arrayAux.push(hourlyForecastList[i]);
-        }
+      if (!isSameDay(dateNow, dateThen)) {
+        arrayAux.push(hourlyForecastList[i]);
       }
-      setDaysArray([...arrayAux]);
-    };
+    }
 
-    filterDayFromHourlyForecastList();
-    filterTemperature(hourlyForecastList[0].main.temp_min, 'min');
-    filterTemperature(hourlyForecastList[0].main.temp_max, 'max');
+    return arrayAux;
+  };
+
+  const normalizeMinMaxTemperature = () => {
+    let filteredDays = filterDayFromHourlyForecastList();
+    const daysMinTemp = filterTemperature(hourlyForecastList[0].main.temp_min, 'min');
+    const daysMaxTemp = filterTemperature(hourlyForecastList[0].main.temp_max, 'max');
+
+    for (let i = 0, length = filteredDays.length; i < length; i++) {
+
+      filteredDays[i].main.temp_min = daysMinTemp[i];
+      filteredDays[i].main.temp_max = daysMaxTemp[i];
+
+    }
+
+    setDaysArray(filteredDays);
+
+  }
+
+  useEffect(() => {
+
+    normalizeMinMaxTemperature();
+
   }, [0]);
 
   return (
