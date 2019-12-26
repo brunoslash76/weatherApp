@@ -14,7 +14,7 @@ export default function ForecastItem({temperature, icon, hour}) {
   }
   return (
     <Container>
-      <Small>{_getHours()}</Small>
+      <Small>{_getHours()}h</Small>
       <Icon>
         <IconForecast
           icon={icon}

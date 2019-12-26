@@ -19,8 +19,8 @@ export default function NextDaysItem({day, icon, minMax}) {
       <Weekdays>{format(new Date(day), 'iiii')}</Weekdays>
       <IconForecast icon={icon} size={30} />
       <Temperature>
-        <Text>{kelvinToCelcius(min)}°</Text>
         <Text>{kelvinToCelcius(max)}°</Text>
+        <Text>{kelvinToCelcius(min)}°</Text>
       </Temperature>
     </Container>
   );
