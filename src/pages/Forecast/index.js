@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {Alert} from 'react-native';
+import {Alert, ScrollView} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 
 import CurrentForecast from '../../components/CurrentForecast';
 import HourlyForecast from '../../components/HourlyForecast';
 import NextDaysForecast from '../../components/NextDaysForecast';
+import CurrenteForecastDetails from '../../components/CurrenteForecastDetails';
 import Background from '../../components/Background';
 
 import {getCityRequest} from '../../store/modules/city/actions';
@@ -49,7 +50,12 @@ export default Forecast = () => {
 
         <CurrentForecast />
         <HourlyForecast />
-        <NextDaysForecast />
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+        >
+          <NextDaysForecast />
+          <CurrenteForecastDetails />
+        </ScrollView>
 
       </Container>
     </Background>
